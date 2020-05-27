@@ -15,6 +15,9 @@ jobs:
         with:
           # Disabling shallow clone is recommended for improving relevancy of reporting
           fetch-depth: 0
+      - name: install typescript
+        run: npm install -g typescript
+
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@v1.2
         env:
