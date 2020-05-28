@@ -35,8 +35,9 @@ jobs:
       run: npm run ng build github-actions --prod
 
     - name: Run affected tests
-      run: npm run nx affected:test --ci --runInBand --base=${{ steps.last-test-sha.outputs.sha }} --head=${GITHUB_SHA}
+#      run: npm run nx affected:test --ci --runInBand --base=${{ steps.last-test-sha.outputs.sha }} --head=${GITHUB_SHA}
 #      run: npm run ng run github-actions:test
+      run: npm run nx test github-actions
 
     - name: Run affected e2e
       run: npm run nx affected:e2e --base=origin/master --headless
