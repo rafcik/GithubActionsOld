@@ -21,24 +21,16 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
-      with:
-        ref: ${{ github.event.pull_request.head.ref }}
-        fetch-depth: 0
-    - run: git fetch --no-tags --prune --depth=5 origin master
+
     - name: Install dependencies
-      run: |
-        npm ci
-#        npm install -g @angular/cli
-#        npm install -g @nrwl/cli
+      run: npm ci
 
     - name: Build project
       run: npm run ng build github-actions --prod
 
     - name: Run affected tests
-#      run: npm run nx affected:test --ci --runInBand --base=${{ steps.last-test-sha.outputs.sha }} --head=${GITHUB_SHA}
-#      run: npm run ng run github-actions:test
-      run: npm run nx test github-actions
+      run: npm run nx test github-actions --ci --runInBand
 
     - name: Run affected e2e
-      run: npm run nx affected:e2e --base=origin/master --headless
+      run: npm run nx e2e github-actions --headless
 
