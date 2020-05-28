@@ -34,3 +34,7 @@ jobs:
 
     - name: Build project
       run: ng build github-actions --prod
+
+    - name: Run affected tests
+      run: nx affected:test
+
