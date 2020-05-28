@@ -38,3 +38,6 @@ jobs:
     - name: Run affected tests
       run: nx affected:test
 
+    - name: Run affected e2e
+      run: nx affected:e2e --headless
+
