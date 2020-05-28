@@ -21,6 +21,10 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
+      with:
+        ref: ${{ github.event.pull_request.head.ref }}
+        fetch-depth: 0
+      run: git fetch --no-tags --prune --depth=5 origin master
 
     - name: Install dependencies
       run: |
@@ -32,9 +36,9 @@ jobs:
       run: npm run ng build github-actions --prod
 
     - name: Run affected tests
-      run: npm run nx affected:test
+      run: npm run nx affected:test --base=origin/master
 #      run: npm run ng run github-actions:test
 
     - name: Run affected e2e
-      run: npm run nx affected:e2e --headless
+      run: npm run nx affected:e2e --base=origin/master --headless
 
