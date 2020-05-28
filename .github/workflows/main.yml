@@ -22,22 +22,18 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
-    # Runs a single command using the runners shell
-    - name: Run a one-line script
-      run: echo Hello, world!
-
-    # Runs a set of commands using the runners shell
-    - name: Run a multi-line script
+    - name: Install dependencies
       run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
+        npm ci
+#        npm install -g @angular/cli
+#        npm install -g @nrwl/cli
 
     - name: Build project
-      run: ng build github-actions --prod
+      run: npm run ng build github-actions --prod
 
     - name: Run affected tests
-      run: nx affected:test
+      run: npm run nx affected:test
 
     - name: Run affected e2e
-      run: nx affected:e2e --headless
+      run: npm run nx affected:e2e --headless
 
