@@ -32,8 +32,8 @@ jobs:
       run: npm run ng build github-actions --prod
 
     - name: Run affected tests
-#      run: npm run nx affected:test
-      run: npm run ng run github-actions:test
+      run: npm run nx affected:test
+#      run: npm run ng run github-actions:test
 
     - name: Run affected e2e
       run: npm run nx affected:e2e --headless
