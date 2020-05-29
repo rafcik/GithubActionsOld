@@ -48,4 +48,4 @@ jobs:
         run: npm run nx -- e2e github-actions-e2e --headless
 
       - name: Deploy to Github Pages
-        run: npm run ng -- deploy --no-build
+        run: npm run ng -- deploy --no-build --no-silent
