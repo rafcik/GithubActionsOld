@@ -2,9 +2,6 @@ name: Lighthouse CI
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
-    types: [opened, synchronize, reopened]
 jobs:
   lighthouse:
     runs-on: ubuntu-latest
