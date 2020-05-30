@@ -32,11 +32,11 @@ jobs:
       - name: Run linter
         run: npm run nx -- lint github-actions
 
-#      - name: SonarCloud Scan
-#        uses: SonarSource/sonarcloud-github-action@v1.2
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.SONAR_GITHUB_TOKEN }}
-#          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@v1.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.SONAR_GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
       - name: Build project
         run: npm run ng -- build github-actions --prod --base-href=/GithubActions/
