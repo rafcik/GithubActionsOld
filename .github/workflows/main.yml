@@ -29,6 +29,15 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
 
+      - name: git status
+        run: git status
+
+      - name: git branch
+        run: git branch
+
+      - name: git config
+        run: git config -l
+
       - name: Install dependencies
         run: npm ci
 
@@ -51,4 +60,4 @@ jobs:
 #        run: npm run nx -- e2e github-actions-e2e --headless
 
       - name: Deploy to Github Pages
-        run: npm run ng -- deploy --no-build --name="rafcik" --email="pasiut11@gmail.com" --no-silent
+        run: npm run ng -- deploy --no-build --name="rafcik" --email="pasiutrafal@gmail.com" --no-silent
