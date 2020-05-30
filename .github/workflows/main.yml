@@ -61,3 +61,5 @@ jobs:
 
       - name: Deploy to Github Pages
         run: npm run ng -- deploy --no-build --name="rafcik" --email="pasiutrafal@gmail.com" --no-silent
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
