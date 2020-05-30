@@ -1,3 +1,5 @@
+![](https://github.com/rafcik/GithubActions/workflows/CI/badge.svg)
+
 # Architech
 
 This project was generated using [Nx](https://nx.dev).
