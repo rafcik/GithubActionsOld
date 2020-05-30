@@ -21,45 +21,33 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-#      - uses: actions/checkout@v2
-#        with:
-#          # Disabling shallow clone is recommended for improving relevancy of reporting
-#          fetch-depth: 0
       - uses: actions/checkout@v2
         with:
-          ref: ${{ github.head_ref }}
-
-      - name: git status
-        run: git status
-
-      - name: git branch
-        run: git branch
-
-      - name: git config
-        run: git config -l
+          # Disabling shallow clone is recommended for improving relevancy of reporting
+          fetch-depth: 0
 
       - name: Install dependencies
         run: npm ci
 
-#      - name: Run linter
-#        run: npm run nx -- lint github-actions
-#
-#      - name: SonarCloud Scan
-#        uses: SonarSource/sonarcloud-github-action@v1.2
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.SONAR_GITHUB_TOKEN }}
-#          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - name: Run linter
+        run: npm run nx -- lint github-actions
+
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@v1.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.SONAR_GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
       - name: Build project
         run: npm run ng -- build github-actions --prod --base-href=/GithubActions/
 
-#      - name: Run affected tests
-#        run: npm run nx -- test github-actions --ci --runInBand
-#
-#      - name: Run affected e2e
-#        run: npm run nx -- e2e github-actions-e2e --headless
+      - name: Run affected tests
+        run: npm run nx -- test github-actions --ci --runInBand
+
+      - name: Run affected e2e
+        run: npm run nx -- e2e github-actions-e2e --headless
 
       - name: Deploy to Github Pages
-        run: npm run ng -- deploy --no-build --name="rafcik" --email="pasiutrafal@gmail.com" --no-silent
+        run: npm run ng -- deploy --no-build --name="rafcik" --email="GithubActions@example.com" --no-silent
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
