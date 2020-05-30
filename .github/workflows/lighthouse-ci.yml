@@ -15,4 +15,5 @@ jobs:
         with:
           urls: |
             https://rafcik.github.io/GithubActions/
+          uploadArtifacts: true
           runs: 3
