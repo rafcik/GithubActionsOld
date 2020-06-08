@@ -45,7 +45,7 @@ jobs:
         run: npm run nx -- e2e github-actions-e2e --headless
 
       - name: Build project
-        run: npm run ng -- build github-actions --prod --base-href=/GithubActions/
+        run: npm run ng -- build github-actions --prod --base-href=/GithubActionsOld/
 
       - name: Deploy to Github Pages
         if: ${{ github.ref == 'refs/heads/master' }}
