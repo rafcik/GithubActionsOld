@@ -1,9 +1,5 @@
-# This is a basic workflow to help you get started with Actions
+name: CI CD
 
-name: CI
-
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
 on:
   push:
     branches: [ master ]
@@ -11,20 +7,11 @@ on:
     branches: [ master ]
     types: [opened, synchronize, reopened]
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-        with:
-          # Disabling shallow clone is recommended for improving relevancy of reporting
-          fetch-depth: 0
 
       - name: Cache node modules
         uses: actions/cache@v2
@@ -51,14 +38,14 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.SONAR_GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-      - name: Build project
-        run: npm run ng -- build github-actions --prod --base-href=/GithubActions/
-
       - name: Run affected tests
         run: npm run nx -- test github-actions --ci --runInBand
 
       - name: Run affected e2e
         run: npm run nx -- e2e github-actions-e2e --headless
+
+      - name: Build project
+        run: npm run ng -- build github-actions --prod --base-href=/GithubActions/
 
       - name: Deploy to Github Pages
         if: ${{ github.ref == 'refs/heads/master' }}
